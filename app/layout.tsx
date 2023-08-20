@@ -4,7 +4,13 @@ import { Archivo } from 'next/font/google';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { ThemeToggle } from '@/components/theme-toggle';
 
-// Import fonts
+// mocking: start mock server
+// msw still not working with nextjs 13
+// if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+//   require('../mocks');
+// }
+
+// theming: import fonts, check back tailwind config: https://dev.to/sdorra/nextjs-13-fonts-with-tailwind-2l4l
 const archivo = Archivo({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
@@ -23,9 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={archivo.className}>
+      <body className={`${archivo.className} ${archivo.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           {children}
         </ThemeProvider>
       </body>
